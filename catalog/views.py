@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from catalog.models import Product
 
 
 def contacts(request):
@@ -7,4 +8,18 @@ def contacts(request):
 
 def home(request):
     return render(request, 'catalog/home.html')
+
+
+def products(request):
+    context = {
+        'product_list': Product.objects.all()
+    }
+    return render(request, 'catalog/products.html', context)
+
+
+def pictures(request):
+    context = {
+        'pictures_list': Product.objects.all()
+    }
+    return render(request, 'catalog/pictures.html', context)
 
