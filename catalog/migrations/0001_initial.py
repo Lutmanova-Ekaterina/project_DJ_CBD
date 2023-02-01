@@ -12,11 +12,28 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='Blog',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('head', models.CharField(max_length=250, verbose_name='Заголовок')),
+                ('slug', models.CharField(max_length=250, verbose_name='Slug')),
+                ('content', models.TextField(verbose_name='Содержимое')),
+                ('image', models.ImageField(blank=True, null=True, upload_to='media/', verbose_name='Изображение')),
+                ('date_create', models.DateTimeField(verbose_name='Дата создания')),
+                ('sing_of_publication', models.CharField(choices=[('active', 'Опубликован'), ('inactive', 'Не опубликован')], default='active', max_laugth=250, verbose_name='Признак публикации')),
+                ('views_number', models.IntegerField(default=0, verbose_name='Количество просмотров')),
+            ],
+            options={
+                'verbose_name': 'Блок',
+                'verbose_name_plural': 'Блоги',
+            },
+        ),
+        migrations.CreateModel(
             name='Category',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('category_name', models.CharField(max_length=250, verbose_name='Наименование')),
-                ('description', models.TextField(verbose_name='Описание')),
+                ('title', models.TextField(verbose_name='Описание')),
             ],
             options={
                 'verbose_name': 'Категория',
